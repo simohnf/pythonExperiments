@@ -104,15 +104,46 @@
 #tot2 = sum( med2 )
 #print( "RESULT", total, total % 10000, tot2, tot2 % 10000 )
 
-f = open( "twoSumTest.txt", "r")
+#f = open( "twoSumTest.txt", "r")
+#l = f.readlines()
+#data = [ int(line) for line in l ]
+##print( data )
+##x = range( -10, 11)
+##for i in x:
+##    print( i )
+#
+##print()
+#import twoSum as ts
+#
+#ts.twoSum( data )
+
+
+
+import schedule as sc
+f = open( "jobs.txt", "r")
 l = f.readlines()
-data = [ int(line) for line in l ]
-#print( data )
-#x = range( -10, 11)
-#for i in x:
-#    print( i )
+l = l[ 1: ]
+jobs = [ [ int(val) for val in line.split() ] for line in l ]
+sc.schedByDiff( jobs )
 
-#print()
-import twoSum as ts
+f = open( "jobs.txt", "r")
+l = f.readlines()
+l = l[ 1: ]
+jobs = [ [ int(val) for val in line.split() ] for line in l ]
+sc.schedByRatio( jobs )
 
-ts.twoSum( data )
+
+import primsMST as prim
+f = open( "edges.txt", "r")
+l = f.readlines()
+ve = [ int( i ) for i in l[ 0 ].split() ]
+l = l[ 1: ]
+g = [ [ int(val) for val in line.split() ] for line in l ]
+
+g2 = {}
+for i in range( ve [ 0 ] ):
+    g2[ i + 1 ] = {}
+for e in g:
+    g2[ e[ 0 ] ][ e[ 1 ] ] = e[ 2 ]
+    g2[ e[ 1 ] ][ e[ 0 ] ] = e[ 2 ]
+prim.prim( g2, 3 )
