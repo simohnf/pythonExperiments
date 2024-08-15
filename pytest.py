@@ -117,33 +117,46 @@
 #
 #ts.twoSum( data )
 
+#
+#
+#import schedule as sc
+#f = open( "jobs.txt", "r")
+#l = f.readlines()
+#l = l[ 1: ]
+#jobs = [ [ int(val) for val in line.split() ] for line in l ]
+#sc.schedByDiff( jobs )
+#
+#f = open( "jobs.txt", "r")
+#l = f.readlines()
+#l = l[ 1: ]
+#jobs = [ [ int(val) for val in line.split() ] for line in l ]
+#sc.schedByRatio( jobs )
+#
+#
+#import primsMST as prim
+#f = open( "edges.txt", "r")
+#l = f.readlines()
+#ve = [ int( i ) for i in l[ 0 ].split() ]
+#l = l[ 1: ]
+#g = [ [ int(val) for val in line.split() ] for line in l ]
+#
+#g2 = {}
+#for i in range( ve [ 0 ] ):
+#    g2[ i + 1 ] = {}
+#for e in g:
+#    g2[ e[ 0 ] ][ e[ 1 ] ] = e[ 2 ]
+#    g2[ e[ 1 ] ][ e[ 0 ] ] = e[ 2 ]
+#prim.prim( g2, 3 )
 
 
-import schedule as sc
-f = open( "jobs.txt", "r")
+f = open( "dtimes.txt", "r")
+
 l = f.readlines()
-l = l[ 1: ]
-jobs = [ [ int(val) for val in line.split() ] for line in l ]
-sc.schedByDiff( jobs )
-
-f = open( "jobs.txt", "r")
-l = f.readlines()
-l = l[ 1: ]
-jobs = [ [ int(val) for val in line.split() ] for line in l ]
-sc.schedByRatio( jobs )
-
-
-import primsMST as prim
-f = open( "edges.txt", "r")
-l = f.readlines()
-ve = [ int( i ) for i in l[ 0 ].split() ]
-l = l[ 1: ]
-g = [ [ int(val) for val in line.split() ] for line in l ]
-
-g2 = {}
-for i in range( ve [ 0 ] ):
-    g2[ i + 1 ] = {}
-for e in g:
-    g2[ e[ 0 ] ][ e[ 1 ] ] = e[ 2 ]
-    g2[ e[ 1 ] ][ e[ 0 ] ] = e[ 2 ]
-prim.prim( g2, 3 )
+times = []
+for line in l:
+    line = line.split(",")
+    s = line[ 1 ]
+    s = s.split(';')[ 0 ]
+    times.append( float(s) )
+#times = [ [ val for val in line.split() ] for line in l ]
+print ( times )
