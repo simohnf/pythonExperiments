@@ -1,0 +1,104 @@
+#N canvas 49 22 596 661 10;
+#X declare -lib py;
+#X msg 24 233 \; pd-sub loadbang;
+#X floatatom 24 79 5 0 0 0 - - -;
+#X obj 52 136 * 20;
+#X obj 24 96 t f f f;
+#X obj 24 156 pack s f f;
+#X obj 24 325 makefilename pd-%d-subsub;
+#X msg 24 347 \; \$1 clear;
+#X floatatom 24 306 5 0 0 0 - - -;
+#X msg 21 53 1;
+#X msg 61 53 2;
+#X msg 97 53 3;
+#X text 149 53 a) create some subsubpatches and abstractions;
+#X text 148 237 b) if your abstractions use loadbang you have to do
+that manually;
+#X msg 24 283 1;
+#X msg 64 283 2;
+#X msg 100 283 3;
+#X text 142 398 (clear pd-sub before saving this patch);
+#X text 145 282 c) clear subsubpatch where your abstractions are;
+#X text 23 506 e) if your abstraction does signal processing you need
+to rebuild the dsptree. you could do so by either turn off/on [pd dsp
+0 \, pd dsp 1( or dynamically create an other ~-object in a subpatch
+and clear it again.;
+#X text 25 439 d) if your abstraction has a gui inside that you want
+to open sepparately \, use either namecanvas or put the gui in an subpatch
+[pd \$1-something] and use an arguemnt as id to refenrence the subpatch.
+;
+#X text 25 578 for questions feel free to write me enrique@netpd.org
+;
+#X obj 441 35 import py;
+#X obj 506 4 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 24 176 \; pd-test obj 10 \$2 pd \$3-subsub \; \$1 obj 10 10
+osc~ \$3;
+#X obj 24 116 makefilename pd-test;
+#X msg 24 392 \; pd-test clear;
+#X obj 468 65 key;
+#X obj 468 109 moses 0;
+#X obj 468 86 - 49;
+#X obj 468 131 moses 9;
+#X msg 470 153 \$1 1;
+#X obj 527 110 moses 0;
+#X obj 527 87 - 49;
+#X obj 527 132 moses 9;
+#X msg 529 154 \$1 0;
+#X obj 527 66 keyup;
+#X obj 387 115 tgl 50 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#N canvas 436 37 450 300 sequencer 0;
+#X msg 63 146 reload;
+#X obj 121 57 metro 1;
+#X obj 121 32 inlet;
+#X msg 121 83 run;
+#X obj 198 31 inlet;
+#X obj 246 56 pack;
+#X floatatom 244 20 5 0 0 0 - - -;
+#X floatatom 285 20 5 0 0 0 - - -;
+#X msg 182 84 button \$1 \$2;
+#X obj 63 170 pyext stepSeq stepSeq;
+#X obj 62 201 outlet;
+#X connect 0 0 9 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 9 1;
+#X connect 4 0 8 0;
+#X connect 6 0 5 0;
+#X connect 7 0 5 1;
+#X connect 8 0 9 1;
+#X connect 9 0 10 0;
+#X restore 421 183 pd sequencer;
+#X obj 433 86 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 419 216 print;
+#X obj 507 199 print yo;
+#X connect 1 0 3 0;
+#X connect 2 0 4 1;
+#X connect 3 0 24 0;
+#X connect 3 1 2 0;
+#X connect 3 2 4 2;
+#X connect 4 0 23 0;
+#X connect 5 0 6 0;
+#X connect 7 0 5 0;
+#X connect 8 0 1 0;
+#X connect 9 0 1 0;
+#X connect 10 0 1 0;
+#X connect 13 0 7 0;
+#X connect 14 0 7 0;
+#X connect 15 0 7 0;
+#X connect 22 0 21 0;
+#X connect 24 0 4 0;
+#X connect 26 0 28 0;
+#X connect 26 0 38 0;
+#X connect 27 1 29 0;
+#X connect 28 0 27 0;
+#X connect 29 0 30 0;
+#X connect 30 0 37 1;
+#X connect 31 1 33 0;
+#X connect 32 0 31 0;
+#X connect 33 0 34 0;
+#X connect 34 0 37 1;
+#X connect 35 0 32 0;
+#X connect 36 0 37 0;
